@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../styles/common.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 import axios from "axios";
 export default function Index({ setLogin }) {
@@ -26,7 +27,19 @@ export default function Index({ setLogin }) {
         setLogin((previous) => !previous);
         navigate("/models");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast(error.data.email, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          type:"error",
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
   };
 
   return (

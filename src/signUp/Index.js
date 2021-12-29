@@ -3,6 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import "../styles/signUp.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+// import {showNotification} from '../AlertMessages'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
 
 export default function Index({ setLogin }) {
   const [email, setEmail] = useState("");
@@ -13,8 +17,23 @@ export default function Index({ setLogin }) {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/api/register`;
     event.preventDefault();
+
+    if(password !== confirmPassword){
+      toast("Confirm password didn't matched", {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        type:"error",
+        progress: undefined,
+        theme: 'colored',
+      });
+    }
+    else{    
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/register`;
 
     axios
       .post(url, {
@@ -29,7 +48,20 @@ export default function Index({ setLogin }) {
         setLogin((previous) => !previous);
         navigate("/models");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast(error.data.details, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          type:"error",
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
+    }
   };
 
   return (

@@ -5,6 +5,7 @@ import Header from "./Header";
 import SingUp from "./signUp/Index";
 import ModelList from "./modelList/Index";
 import InvalidPath from "./invalidPath/Index";
+import { ToastContainer } from 'react-toastify';
 
 import { Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <div>
       <Header setLogin={setLogin}/>
+      <ToastContainer />
       <Routes>
         <Route exact path="/" element={<SingUp setLogin={setLogin} />} />
         <Route exact path="/login" element={<SignIn  setLogin={setLogin} />} />

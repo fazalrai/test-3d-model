@@ -8,7 +8,6 @@ import { Button } from "react-bootstrap";
 const App = () => {
   const mountRef = useRef(null);
 
-  const [checked, setChecked] =React.useState(false)
 
   const [models, setModels] = useState([]);
   const [index, setIndex] = useState(0);
@@ -19,9 +18,7 @@ const App = () => {
 
   useEffect(() => {
     const url = `${process.env.REACT_APP_API_BASE_URL}/models`;
-
-    // const token = localStorage.getItem('Token');
-
+    const token = localStorage.getItem('Token');
     const headers = {
       Authorization:
         `Bearer ${token}`
@@ -29,7 +26,6 @@ const App = () => {
     axios
       .get(url, { headers })
       .then((response) => {
-        //   debugger
         setModels(response.data);
       });
   }, []);
