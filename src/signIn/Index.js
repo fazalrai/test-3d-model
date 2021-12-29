@@ -28,7 +28,7 @@ export default function Index({ setLogin }) {
         navigate("/models");
       })
       .catch((error) => {
-        toast(error.data.email, {
+        toast(error.response.data.detail, {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,

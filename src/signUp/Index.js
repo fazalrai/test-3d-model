@@ -49,7 +49,7 @@ export default function Index({ setLogin }) {
         navigate("/models");
       })
       .catch((error) => {
-        toast(error.data.details, {
+        toast(error.response.data.email[0], {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
