@@ -24,6 +24,12 @@
   color: white;
 }
 
+.selectBox {
+  border: 1px solid #55aaff;
+  background-color: rgba(75, 160, 255, 0.3);
+  position: fixed;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +42,4 @@
     transform: rotate(360deg);
   }
 }
+
